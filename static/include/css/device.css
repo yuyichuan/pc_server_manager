@@ -1,0 +1,98 @@
+/*设备管理*/
+.w20 {
+	width: 20px;
+}
+.w40 {
+	width: 40px;
+}
+.w60 {
+	width: 60px;
+}
+.w80 {
+	width: 80px
+}
+.w100 {
+	width: 100px
+}
+.w120 {
+	width: 120px
+}
+.w150 {
+	width: 150px
+}
+.w200 {
+	width: 200px
+}
+.w300 {
+	width: 300px
+}
+.cursor {
+	cursor: pointer;
+}
+.mr10 {
+	margin-right: 10px
+}
+.mtb10 {
+	margin-top: 10px;
+	margin-bottom: 10px
+}
+.hide {
+	display: none
+}
+.text-hidden {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+body {
+	padding-top: 60px;
+	padding-bottom: 30px;
+}
+.main-container {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#deviceTable {
+	table-layout: fixed
+}
+#deviceTable .glyphicon {
+	cursor: pointer;
+}
+/*登陆页*/
+.loginBg{
+	padding-top: 40px;
+padding-bottom: 40px;
+background-color: #eee;
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading{
+  margin-bottom: 10px;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input.username {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin inpu.password {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
