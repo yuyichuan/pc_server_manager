@@ -30,7 +30,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">设备管理系统</a>
+					<a class="navbar-brand" href="/">设备管理系统</a>
 				</div>
 				% if viewmodel['user'] > 0:
 				<div class="navbar-header">

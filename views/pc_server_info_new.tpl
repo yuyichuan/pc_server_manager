@@ -30,7 +30,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">设备管理系统</a>
+					<a class="navbar-brand" href="/">设备管理系统</a>
 				</div>
 				% if viewmodel['user'] > 0:
 				<div class="navbar-header">
@@ -49,7 +49,6 @@
 						<li class="active">
 							<a href="/login">登录</a>
 						</li>
-
 					</ul>
 				</div>
 				% end
@@ -61,6 +60,7 @@
 				<form class="form-horizontal" id="deviceForm" name="deviceForm" action="/save" method="post">
                     <input type="hidden" name="ind" value="0"/>
 					<input type="hidden" name="ind_prent" value="{{viewmodel['ind_prent']}}"/>
+					<input type="hidden" name="i_level" value="{{viewmodel['i_level']}}"/>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">质保</label>
 						<div class="col-sm-4">

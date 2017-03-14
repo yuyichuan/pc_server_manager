@@ -30,7 +30,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">设备管理系统</a>
+					<a class="navbar-brand" href="/">设备管理系统</a>
 				</div>
 				% if viewmodel['user'] > 0:
 				<div class="navbar-header">
@@ -53,6 +53,7 @@
 				<form class="form-horizontal" id="deviceForm" name="deviceForm" action="/save" method="post">
                     <input type="hidden" name="ind" value="{{server.ind}}"/>
 					<input type="hidden" name="ind_prent" value="{{server.ind_prent}}"/>
+					<input type="hidden" name="i_level" value="{{server.i_level}}"/>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">质保</label>
 						<div class="col-sm-4">
@@ -191,6 +192,9 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<div  class="col-sm-offset-2 col-sm-10" style="color:red">{{viewmodel['msg']}}</div>
+					</div>
+					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<button type="submit" class="btn btn-primary mr10" id="saveBtn">
 								保存
@@ -199,9 +203,6 @@
 								取消
 							</button>
 						</div>
-					</div>
-					<div class="form-group">
-						<div  class="col-sm-offset-2 col-sm-10" style="color:red"></div>
 					</div>
 				</form>
 			</div>

@@ -5,6 +5,7 @@ __author__ = 'yuyichuan'
 from bottle import *
 import logging
 import logging.config
+import types
 import macaron
 from beaker.middleware import SessionMiddleware
 
@@ -86,16 +87,79 @@ def server_info(ind):
         result['server']=server
         result['user']=s['user_id']
         result['user_name']=s['user_name']
+        result['msg']=''
 
         return template("pc_server_info", viewmodel=result)
     else:
         return template("pc_server_info_readonly", viewmodel=server)
 
+@route("/serverok/<ind>")
+def serverok_info(ind):
+    s = bottle.request.environ.get('beaker.session')
+    server = Server.get(ind)
+
+    if s and s.has_key('user_id') and s['user_id'] > 0:
+        result={}
+        result['server']=server
+        result['user']=s['user_id']
+        result['user_name']=s['user_name']
+        result['msg']='saved'
+
+        return template("pc_server_info", viewmodel=result)
+    else:
+        return template("pc_server_info_readonly", viewmodel=server)
 
 @route("/save", method='POST')
 def update_server():
-    s = ''
-    return
+    s = bottle.request.environ.get('beaker.session')
+    if not s or not s.has_key('user_id') or s['user_id'] == 0:
+        redirect('/login', code=302)
+
+    ind = request.forms.get('ind');
+    ind_prent = request.forms.get('ind_prent')
+    i_level = request.forms.get('i_level')
+
+    if ind == '0':# new record
+        new_server = Server.create(i_level=i_level, ind_prent=ind_prent)
+    else:
+        new_server = Server.get(ind)
+
+    new_server.e_time=__formatstr(request.forms.get('e_time'))
+    new_server.s_time=__formatstr(request.forms.get('s_time'))
+    new_server.m_r=__formatstr(request.forms.get('m_r'))
+    new_server.cabinet=__formatstr(request.forms.get('cabinet'))
+    new_server.location=__formatstr(request.forms.get('location'))
+    new_server.idrac=__formatstr(request.forms.get('idrac'))
+    new_server.cable_label=__formatstr(request.forms.get('cable_label'))
+    new_server.mac=__formatstr(request.forms.get('mac'))
+    new_server.ip=__formatstr(request.forms.get('ip'))
+    new_server.cpu=__formatstr(request.forms.get('cpu'))
+    new_server.hd=__formatstr(request.forms.get('hd'))
+    new_server.memory=__formatstr(request.forms.get('memory'))
+    new_server.op_sys=__formatstr(request.forms.get('op_sys'))
+    new_server.bz_name=__formatstr(request.forms.get('bz_name'))
+    new_server.in_using=__formatstr(request.forms.get('in_using'))
+    new_server.config=__formatstr(request.forms.get('config'))
+    new_server.pc_type=__formatstr(request.forms.get('pc_type'))
+    new_server.pc_code=__formatstr(request.forms.get('pc_code'))
+    new_server.remark=__formatstr(request.forms.get('remark'))
+    new_server.user_pw=__formatstr(request.forms.get('user_pw'))
+    new_server.monitor_url=__formatstr(request.forms.get('monitor_url'))
+
+    new_server.save()
+    macaron.bake()
+
+    redirect('/serverok/%s' % new_server.ind, code=302)
+
+def __formatstr(orginal):
+    if orginal == "None":
+        return None
+
+    if type(orginal) is types.StringType:
+        return orginal.decode('utf-8')
+
+    return orginal
+
 
 @route('/newserver/<pind>', method='GET')
 def new_server_inf(pind):
@@ -105,8 +169,13 @@ def new_server_inf(pind):
 
     result={}
     result['ind_prent'] = pind
+    result['i_level'] = 0
     result['user']=s['user_id']
     result['user_name']=s['user_name']
+
+    if pind > 0:
+        server = Server.get(pind)
+        result['i_level'] = server.i_level
 
     return template("pc_server_info_new", viewmodel=result)
 
