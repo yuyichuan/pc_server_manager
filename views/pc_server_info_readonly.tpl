@@ -38,7 +38,7 @@
 		<div class="main-container">
 			<div class="">
                 % server=viewmodel
-				<form class="form-horizontal" id="deviceForm" name="deviceForm" action="#">
+				<form class="form-horizontal" id="deviceForm" name="deviceForm" action="#" method="get">
                     
 					<div class="form-group">
 						<label class="col-sm-2 control-label">质保</label>

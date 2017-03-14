@@ -43,151 +43,151 @@
 						</li>
 					</ul>
 				</div>
+				% else:
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="/login">登录</a>
+						</li>
+
+					</ul>
+				</div>
 				% end
 			</div>
 		</nav>
 		<input type="hidden" id="dispatcher" name="dispatcher" value="deviceManage" />
 		<div class="main-container">
 			<div class="">
-                % server=viewmodel['server']
 				<form class="form-horizontal" id="deviceForm" name="deviceForm" action="/save" method="post">
-                    <input type="hidden" name="ind" value="{{server.ind}}"/>
-					<input type="hidden" name="ind_prent" value="{{server.ind_prent}}"/>
+                    <input type="hidden" name="ind" value="0"/>
+					<input type="hidden" name="ind_prent" value="{{viewmodel['ind_prent']}}"/>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">质保</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="e_time" value="{{server.e_time}}">
+							<input type="text" class="form-control input-sm" name="e_time" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">使用投入</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="s_time" value="{{server.s_time}}">
+							<input type="text" class="form-control input-sm" name="s_time" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">机房名称</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="m_r" value="{{server.m_r}}">
+							<input type="text" class="form-control input-sm" name="m_r" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">机柜</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="cabinet" value="{{server.cabinet}}">
+							<input type="text" class="form-control input-sm" name="cabinet" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">位置</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="location" value="{{server.location}}">
+							<input type="text" class="form-control input-sm" name="location" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">iDRAC</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="idrac" value="{{server.idrac}}">
+							<input type="text" class="form-control input-sm" name="idrac" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">网线标签</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="cable_label" value="{{server.cable_label}}">
+							<input type="text" class="form-control input-sm" name="cable_label" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">mac</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="mac" value="{{server.mac}}">
+							<input type="text" class="form-control input-sm" name="mac" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">ip地址</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="ip" value="{{server.ip}}">
+							<input type="text" class="form-control input-sm" name="ip" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">cpu核</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="cpu" value="{{server.cpu}}">
+							<input type="text" class="form-control input-sm" name="cpu" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">硬盘(GB)</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="hd" value="{{server.hd}}">
+							<input type="text" class="form-control input-sm" name="hd" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">内存(GB)</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="memory" value="{{server.memory}}">
+							<input type="text" class="form-control input-sm" name="memory" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">操作系统</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="op_sys" value="{{server.op_sys}}">
+							<input type="text" class="form-control input-sm" name="op_sys" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">业务</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control input-sm" name="bz_name" value="{{server.bz_name}}">
+							<input type="text" class="form-control input-sm" name="bz_name" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">是否使用</label>
 						<div class="col-sm-4">
 							<label class="radio-inline">
-								<input type="radio" name="used" name="in_using"
-                                % if server.e_time > 0:
-                                checked="checked"
-                                %end
-                                >是 </label>
+								<input type="radio" name="used" name="in_using">是 </label>
 							<label class="radio-inline">
-								<input type="radio" name="used" name="in_using"
-                                % if server.e_time < 1:
-                                checked="checked"
-                                %end
-                            >否 </label>
+								<input type="radio" name="used" name="in_using">否 </label>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">配置说明</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control input-sm" name="config" value="{{server.config}}">
+							<input type="text" class="form-control input-sm" name="config" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">型号</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="pc_type" value="{{server.pc_type}}">
+							<input type="text" class="form-control input-sm" name="pc_type" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">服务编码</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="pc_code" value="{{server.pc_code}}">
+							<input type="text" class="form-control input-sm" name="pc_code" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">备注</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control input-sm" name="remark" value="{{server.remark}}">
+							<input type="text" class="form-control input-sm" name="remark" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">用户名/密码</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="user_pw" value="{{server.user_pw}}">
+							<input type="text" class="form-control input-sm" name="user_pw" value="">
 						</div>
 					</div>
                     <div class="form-group">
 						<label for="" class="col-sm-2 control-label">监控地址</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control input-sm" name="monitor_url" value="{{server.monitor_url}}">
+							<input type="text" class="form-control input-sm" name="monitor_url" value="">
 						</div>
 					</div>
 					<div class="form-group">
@@ -199,9 +199,6 @@
 								取消
 							</button>
 						</div>
-					</div>
-					<div class="form-group">
-						<div  class="col-sm-offset-2 col-sm-10" style="color:red"></div>
 					</div>
 				</form>
 			</div>

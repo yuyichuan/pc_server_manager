@@ -32,21 +32,27 @@
 					</button>
 					<a class="navbar-brand" href="#">设备管理系统</a>
 				</div>
-				<!--<div id="navbar" class="navbar-collapse collapse">
+				% if viewmodel['user'] > 0:
+				<div class="navbar-header">
 					<ul class="nav navbar-nav">
-						<li class="active">
-							<a href="#">Home</a>
+					<li class="active">
+							<a href="">{{viewmodel['user_name']}}</a>
 						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="#">Action</a>
-								</li>
-							</ul>
+					<li class="active">
+							<a href="/logout">退出</a>
 						</li>
 					</ul>
-				</div>--><!--/.nav-collapse -->
+				</div>
+				% else:
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="/login">登录</a>
+						</li>
+
+					</ul>
+				</div>
+				% end
 			</div>
 		</nav>
 		<input type="hidden" name="dispatcher" id="dispatcher" delUrl="include/js/mock-up/success.json"
@@ -59,7 +65,7 @@
 				<table id="deviceTable" class="table table-condensed table-bordered table-striped table-hover">
 					<thead>
 						<tr>
-							<th class="w100">操作</th>
+							<th class="w60">操作</th>
 							<th class="w20"></th>
 							<th class="w20"></th>
 							<th class="w100">质保</th>
@@ -88,7 +94,11 @@
 					%for itemw in viewmodel['servers']:
 					%	item=itemw.server
 						<tr data-id="{{item.ind}}">
-							<td><a href="/server/{{item.ind}}"><span class="glyphicon glyphicon-cog mr10 " title="详情"></span></a><span class="glyphicon glyphicon-plus" title="新增子类"></span></a></td>
+							<td><a href="/server/{{item.ind}}"><span class="glyphicon glyphicon-cog mr10 " title="详情"></span></a>
+								% if viewmodel['user'] > 0:
+								<a href="/newserver/{{item.ind}}"><span class="glyphicon glyphicon-plus" title="新增子类"></span></a>
+								% end
+							</td>
 							<td><a class="expandBtn expand" href="javascript:;" title="展开"><span class="glyphicon glyphicon-triangle-top"></span></a></td>
 							<td></td>
 							<td>{{item.e_time}}</td>
@@ -121,7 +131,11 @@
 						%for subitemw in itemw.sub_servers:
 						%	subitem=subitemw.server
 							<tr data-id="{{item.ind}}-{{subitem.ind}}" data-pid="{{item.ind}}" class="hide">
-								<td><a href="/server/{{subitem.ind}}"><span class="glyphicon glyphicon-cog mr10 " title="详情"></span></a><span class="glyphicon glyphicon-plus" title="新增子类"></span></a></td>
+								<td><a href="/server/{{subitem.ind}}"><span class="glyphicon glyphicon-cog mr10 " title="详情"></span></a>
+									% if viewmodel['user'] > 0:
+									<a href="/newserver/{{subitem.ind}}"><span class="glyphicon glyphicon-plus" title="新增子类"></span></a>
+									% end
+								</td>
 								<td></td>
 								<td><a class="expandBtn expand" href="javascript:;" title="展开"><span class="glyphicon glyphicon-triangle-top"></span></a></td>
 								<td>{{subitem.e_time}}</td>
