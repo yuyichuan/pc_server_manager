@@ -20,7 +20,7 @@ CREATE TABLE pc_server
   ip TEXT, -- IP地址
   cpu INTEGER, -- cpu核
   hd INTEGER, -- 硬盘（GB）
-  memory INTEGER, -- 内存（GB）
+  memory REAL, -- 内存（GB）
   op_sys TEXT, -- 操作系统
   bz_name TEXT, -- 使用的业务方
   in_using INTEGER, -- 是否使用
