@@ -56,13 +56,13 @@ def index():
         user_id = s['user_id']
 
     result={}
-    servers = Server.select("ind_prent=?", ["0"]) # real server
+    servers = Server.select("ind_prent=?", ["0"]).order_by("ip desc") # real server
     server_list = []
     for server in servers:
-        sub_servers = Server.select("ind_prent=?", [server.ind]) #virtual server
+        sub_servers = Server.select("ind_prent=?", [server.ind]).order_by("ip") #virtual server
         sub_server_list = []
         for sub_server in sub_servers:
-            sub_sub_servers = Server.select("ind_prent=?", [sub_server.ind]) # servervice
+            sub_sub_servers = Server.select("ind_prent=?", [sub_server.ind]).order_by("ip") # servervice
             sub_server_wrap = ServerWrap(sub_server, sub_sub_servers)
             sub_server_list.append(sub_server_wrap)
 

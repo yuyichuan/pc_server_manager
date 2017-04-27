@@ -142,14 +142,14 @@
 						<label for="" class="col-sm-2 control-label">是否使用</label>
 						<div class="col-sm-4">
 							<label class="radio-inline">
-								<input type="radio" name="used" name="in_using"
-                                % if server.e_time > 0:
+								<input type="radio" name="in_using" value="1"
+                                % if server.in_using == 1:
                                 checked="checked"
                                 %end
                                 >是 </label>
 							<label class="radio-inline">
-								<input type="radio" name="used" name="in_using"
-                                % if server.e_time < 1:
+								<input type="radio" name="in_using" value="0"
+                                % if server.in_using == 0:
                                 checked="checked"
                                 %end
                             >否 </label>

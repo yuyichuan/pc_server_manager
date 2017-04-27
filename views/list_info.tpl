@@ -63,13 +63,11 @@
 			</form>-->
 			<div class="">
 				<table id="deviceTable" class="table table-condensed table-bordered table-striped table-hover">
-					<thead>
+					<thead >
 						<tr>
-							<th class="w80">操作</th>
+							<th class="w60">操作</th>
 							<th class="w20"></th>
 							<th class="w20"></th>
-							<th class="w40">机柜</th>
-							<th class="w80">位置</th>
 							<th class="w120">IP地址</th>
 							<th class="w40">cpu核</th>
 							<th class="w40">硬盘</th>
@@ -78,6 +76,8 @@
 							<th class="w80">业务</th>
 							<th class="w300">配置说明</th>
 							<th class="w200">备注</th>
+							<th class="w40">机柜</th>
+							<th class="w80">位置</th>
 							<th class="w40">机房</th>
 							<th class="w150">mac</th>
 							<th class="w100">质保</th>
@@ -87,21 +87,26 @@
 							<th class="w80">网线标签</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody >
 					%for itemw in viewmodel['servers']:
 					%	item=itemw.server
-						<tr data-id="{{item.ind}}">
+						<tr data-id="{{item.ind}}" style="background-color:#EEEEEE;">
 							<td><a href="/server/{{item.ind}}"><span class="glyphicon glyphicon-cog mr10 " title="详情"></span></a>
 								% if viewmodel['user'] > 0:
 								<a href="/newserver/{{item.ind}}"><span class="glyphicon glyphicon-plus" title="新增子类"></span></a>
 								% end
-								{{item.ind}}
 							</td>
-							<td><a class="expandBtn expand" href="javascript:;" title="展开"><span class="glyphicon glyphicon-triangle-top"></span></a></td>
+                            <td>
+							% if len(itemw.sub_servers) > 0:
+							<a class="expandBtn expand" href="javascript:;" title="收起"><span class="glyphicon glyphicon-triangle-bottom"></span></a></d>
+							% end
+                            </td>
 							<td></td>
-							<td>{{item.cabinet}}</td>
-							<td class="text-hidden w80" title="{{item.location}}">{{item.location}}</td>
-							<td class="text-hidden w120" title="{{item.ip}}">{{item.ip}}</td>
+							<td class="text-hidden w120" title="{{item.ip}}"
+							    % if item.in_using == 0:
+							 style="background-color:#00FF00"
+							    % end
+							 >{{item.ip}}</td>
 							<td>{{item.cpu}}</td>
 							<td>{{item.hd}}</td>
 							<td>{{item.memory}}</td>
@@ -113,6 +118,8 @@
 							<div class="text-hidden w300" title="{{item.config}}">{{item.config}}</div></td>
 							<td>
 							<div class="text-hidden w200" title="{{item.remark}}">{{item.remark}}</div></td>
+							<td>{{item.cabinet}}</td>
+							<td class="text-hidden w80" title="{{item.location}}">{{item.location}}</td>
 							<td>{{item.m_r}}</td>
 							<td>
 							<div class="text-hidden w150" title="{{item.mac}}">{{item.mac}}</div></td>
@@ -125,18 +132,24 @@
 						</tr>
 						%for subitemw in itemw.sub_servers:
 						%	subitem=subitemw.server
-							<tr data-id="{{item.ind}}-{{subitem.ind}}" data-pid="{{item.ind}}" class="hide">
+							<tr data-id="{{item.ind}}-{{subitem.ind}}" data-pid="{{item.ind}}">
+
 								<td><a href="/server/{{subitem.ind}}"><span class="glyphicon glyphicon-cog mr10 " title="详情"></span></a>
 									% if viewmodel['user'] > 0:
 									<a href="/newserver/{{subitem.ind}}"><span class="glyphicon glyphicon-plus" title="新增子类"></span></a>
 									% end
-									{{subitem.ind}}
 								</td>
 								<td></td>
-								<td><a class="expandBtn expand" href="javascript:;" title="展开"><span class="glyphicon glyphicon-triangle-top"></span></a></td>
-								<td></td>
-                                <td></td>
-                                <td>{{subitem.ip}}</td>
+								<td>
+								% if len(str(subitemw.sub_servers)) > 2:
+								<a class="expandBtn expand" href="javascript:;" title="收起"><span class="glyphicon glyphicon-triangle-bottom"></span></a>
+								% end
+								</td>
+                                <td
+                                % if subitem.in_using == 0:
+							 style="background-color:#00FF00"
+							    % end
+							    >{{subitem.ip}}</td>
                                 <td>{{subitem.cpu}}</td>
                                 <td>{{subitem.hd}}</td>
                                 <td>{{subitem.memory}}</td>
@@ -154,15 +167,15 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
+                                <td></td>
 							</tr>
 							%for ssitem in subitemw.sub_servers:
-								<tr data-id="{{item.ind}}-{{subitem.ind}}-{{ssitem.ind}}" data-pid="{{item.ind}}-{{subitem.ind}}" class="hide">
-									<td><a href="/server/{{ssitem.ind}}"><span class="glyphicon glyphicon-cog mr10 " title="详情">{{ssitem.ind}}</span></a></td>
+								<tr data-id="{{item.ind}}-{{subitem.ind}}-{{ssitem.ind}}" data-pid="{{item.ind}}-{{subitem.ind}}">
+									<td><a href="/server/{{ssitem.ind}}"><span class="glyphicon glyphicon-cog mr10 " title="详情"></span></a></td>
 									<td></td>
 									<td></td>
 									<td></td>
-                                    <td></td>
-                                    <td></td>
                                     <td>{{ssitem.cpu}}</td>
                                     <td>{{ssitem.hd}}</td>
                                     <td>{{ssitem.memory}}</td>
@@ -172,6 +185,8 @@
                                     <td></td>
                                     <td>
                                     <div class="text-hidden w200" title="{{ssitem.remark}}">{{ssitem.remark}}</div></td>
+                                    <td></td>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
