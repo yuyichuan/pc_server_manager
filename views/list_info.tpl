@@ -90,17 +90,18 @@
 					<tbody >
 					%for itemw in viewmodel['servers']:
 					%	item=itemw.server
-						<tr data-id="{{item.ind}}" style="background-color:#EEEEEE;">
+						<tr data-id="{{item.ind}}">
 							<td><a href="/server/{{item.ind}}"><span class="glyphicon glyphicon-cog mr10 " title="详情"></span></a>
 								% if viewmodel['user'] > 0:
 								<a href="/newserver/{{item.ind}}"><span class="glyphicon glyphicon-plus" title="新增子类"></span></a>
 								% end
 							</td>
-                            <td>
+
+							<td>
 							% if len(itemw.sub_servers) > 0:
-							<a class="expandBtn expand" href="javascript:;" title="收起"><span class="glyphicon glyphicon-triangle-bottom"></span></a></d>
+							<a class="expandBtn expand" href="javascript:;" title="展开"><span class="glyphicon glyphicon-triangle-top"></span></a>
 							% end
-                            </td>
+							</td>
 							<td></td>
 							<td class="text-hidden w120" title="{{item.ip}}"
 							    % if item.in_using == 0:
@@ -132,7 +133,7 @@
 						</tr>
 						%for subitemw in itemw.sub_servers:
 						%	subitem=subitemw.server
-							<tr data-id="{{item.ind}}-{{subitem.ind}}" data-pid="{{item.ind}}">
+							<tr data-id="{{item.ind}}-{{subitem.ind}}" data-pid="{{item.ind}}" class="hide">
 
 								<td><a href="/server/{{subitem.ind}}"><span class="glyphicon glyphicon-cog mr10 " title="详情"></span></a>
 									% if viewmodel['user'] > 0:
@@ -142,7 +143,7 @@
 								<td></td>
 								<td>
 								% if len(str(subitemw.sub_servers)) > 2:
-								<a class="expandBtn expand" href="javascript:;" title="收起"><span class="glyphicon glyphicon-triangle-bottom"></span></a>
+								<a class="expandBtn expand" href="javascript:;" title="展开"><span class="glyphicon glyphicon-triangle-top"></span></a>
 								% end
 								</td>
                                 <td
@@ -171,7 +172,7 @@
                                 <td></td>
 							</tr>
 							%for ssitem in subitemw.sub_servers:
-								<tr data-id="{{item.ind}}-{{subitem.ind}}-{{ssitem.ind}}" data-pid="{{item.ind}}-{{subitem.ind}}">
+								<tr data-id="{{item.ind}}-{{subitem.ind}}-{{ssitem.ind}}" data-pid="{{item.ind}}-{{subitem.ind}}" class="hide">
 									<td><a href="/server/{{ssitem.ind}}"><span class="glyphicon glyphicon-cog mr10 " title="详情"></span></a></td>
 									<td></td>
 									<td></td>
