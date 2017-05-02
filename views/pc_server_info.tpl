@@ -139,20 +139,26 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="" class="col-sm-2 control-label">是否使用</label>
+						<label for="" class="col-sm-2 control-label">使用状态</label>
 						<div class="col-sm-4">
 							<label class="radio-inline">
 								<input type="radio" name="in_using" value="1"
                                 % if server.in_using == 1:
                                 checked="checked"
                                 %end
-                                >是 </label>
+                                >在用</label>
 							<label class="radio-inline">
 								<input type="radio" name="in_using" value="0"
                                 % if server.in_using == 0:
                                 checked="checked"
                                 %end
-                            >否 </label>
+                            >空闲</label>
+                            <label class="radio-inline">
+								<input type="radio" name="in_using" value="2"
+                                % if server.in_using == 2:
+                                checked="checked"
+                                %end
+                            >将闲</label>
 						</div>
 					</div>
 					<div class="form-group">

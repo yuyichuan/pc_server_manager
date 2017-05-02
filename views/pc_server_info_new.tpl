@@ -146,12 +146,12 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="" class="col-sm-2 control-label">是否使用</label>
+						<label for="" class="col-sm-2 control-label">使用状态</label>
 						<div class="col-sm-4">
 							<label class="radio-inline">
-								<input type="radio" name="in_using">是 </label>
+								<input type="radio" name="in_using" value="1">在用</label>
 							<label class="radio-inline">
-								<input type="radio" name="in_using">否 </label>
+								<input type="radio" name="in_using" value="0">空闲</label>
 						</div>
 					</div>
 					<div class="form-group">
