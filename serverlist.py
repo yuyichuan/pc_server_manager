@@ -173,7 +173,7 @@ def new_server_inf(pind):
     result['user']=s['user_id']
     result['user_name']=s['user_name']
 
-    if pind > 0:
+    if pind > '0':
         server = Server.get(pind)
         result['i_level'] = server.i_level
 

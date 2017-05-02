@@ -58,9 +58,12 @@
 		<div class="main-container">
 			<div class="">
 				<form class="form-horizontal" id="deviceForm" name="deviceForm" action="/save" method="post">
-                    <input type="hidden" name="ind" value="0"/>
 					<input type="hidden" name="ind_prent" value="{{viewmodel['ind_prent']}}"/>
 					<input type="hidden" name="i_level" value="{{viewmodel['i_level']}}"/>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">parentId</label>
+						<div class="col-sm-4">{{viewmodel['ind_prent']}}</div>
+					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">质保</label>
 						<div class="col-sm-4">

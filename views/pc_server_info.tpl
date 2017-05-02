@@ -55,6 +55,10 @@
 					<input type="hidden" name="ind_prent" value="{{server.ind_prent}}"/>
 					<input type="hidden" name="i_level" value="{{server.i_level}}"/>
 					<div class="form-group">
+						<label class="col-sm-2 control-label">ID</label>
+						<div class="col-sm-4">{{server.ind}}</div>
+					</div>
+					<div class="form-group">
 						<label class="col-sm-2 control-label">质保</label>
 						<div class="col-sm-4">
 							<input type="text" class="form-control input-sm" name="e_time" value="{{server.e_time}}">

@@ -58,9 +58,9 @@
 		<input type="hidden" name="dispatcher" id="dispatcher" delUrl="include/js/mock-up/success.json"
 		refreshUrl="设备管理-列表页.shtml" />
 		<div class="main-container">
-			<!--<form class="form-inline mtb10">
-				<a href="设备管理-详情页.shtml" class="btn btn-primary">新增</a>
-			</form>-->
+			<form class="form-inline mtb10">
+				<a href="/newserver/0" class="btn btn-primary">新增</a>
+			</form>
 			<div class="">
 				<table id="deviceTable" class="table table-condensed table-bordered table-striped table-hover">
 					<thead >
