@@ -57,11 +57,11 @@
 		</nav>
 		<input type="hidden" name="dispatcher" id="dispatcher" delUrl="include/js/mock-up/success.json"
 		refreshUrl="设备管理-列表页.shtml" />
-		<div class="main-container">
+		<div class="main-container ">
 			<form class="form-inline mtb10">
 				<a href="/newserver/0" class="btn btn-primary">新增</a>
 			</form>
-			<div class="">
+			<div class="tableContainer">
 				<table id="deviceTable" class="table table-condensed table-bordered table-striped table-hover">
 					<thead >
 						<tr>
