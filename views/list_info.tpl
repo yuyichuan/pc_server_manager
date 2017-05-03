@@ -33,9 +33,10 @@
 					<a class="navbar-brand" href="/">设备管理系统</a>
 				</div>
 				% if viewmodel['user'] > 0:
+
 				<div class="navbar-header">
 					<ul class="nav navbar-nav">
-					<li class="active">
+						<li>
 							<a href="">{{viewmodel['user_name']}}</a>
 						</li>
 					<li class="active">
@@ -58,15 +59,43 @@
 		<input type="hidden" name="dispatcher" id="dispatcher" delUrl="include/js/mock-up/success.json"
 		refreshUrl="设备管理-列表页.shtml" />
 		<div class="main-container ">
-			<form class="form-inline mtb10">
+			<form class="form-inline mtb10" id="searchForm">
+				<div class="form-group ">
+					<label for="">机房</label>
+					<select name="m_r">
+						<option value="5F">5F</option>
+						<option value="HK">HK</option>
+						<option value="HS">HS</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="">状态</label>
+					<select name="in_using">
+						<option value="">请选择</option>
+						<option value="1">忙碌</option>
+						<option value="0">空闲</option>
+						<option value="2">半闲</option>
+					</select>
+				</div>
+				<button type="submit" class="btn btn-warning">
+					搜索
+				</button>
+				<input type="hidden" name="listSortName" id="listSortName" value="">
+				<input type="hidden" name="listSortName" id="listSortType" value="">
+				% if viewmodel['user'] > 0:
 				<a href="/newserver/0" class="btn btn-primary">新增</a>
+				% end
+				<span>服务器数量：{{len(viewmodel['servers'])}}</span>
 			</form>
 			<div class="tableContainer">
-				<table id="deviceTable" class="table table-condensed table-bordered table-striped table-hover">
+				<table id="deviceTable" class="table table-condensed table-bordered table-hover">
 					<thead >
 						<tr>
 							<th class="w60">操作</th>
-							<th class="w20"></th>
+							<th class="w30">
+								<a id="expandAllBtn" class="expand" title="展开" href="javascript:;">
+								<span class="glyphicon glyphicon-triangle-top"></span>
+							</a></th>
 							<th class="w20"></th>
 							<th class="w120">IP地址</th>
 							<th class="w40">cpu核</th>
@@ -90,7 +119,7 @@
 					<tbody >
 					%for itemw in viewmodel['servers']:
 					%	item=itemw.server
-						<tr data-id="{{item.ind}}">
+						<tr data-id="{{item.ind}}" >
 							<td><a href="/server/{{item.ind}}"><span class="glyphicon glyphicon-cog mr10 " title="详情"></span></a>
 								% if viewmodel['user'] > 0:
 								<a href="/newserver/{{item.ind}}"><span class="glyphicon glyphicon-plus" title="新增子类"></span></a>
@@ -104,7 +133,7 @@
 							</td>
 							<td></td>
 							<td class="text-hidden w120" title="{{item.ip}}"
-							    % if item.in_using == 0:
+							    % if item.in_using ==0:
 							 style="background-color:#00FF00"
 							    % end
 							 >{{item.ip}}</td>
@@ -133,7 +162,7 @@
 						</tr>
 						%for subitemw in itemw.sub_servers:
 						%	subitem=subitemw.server
-							<tr data-id="{{item.ind}}-{{subitem.ind}}" data-pid="{{item.ind}}" class="hide">
+							<tr data-id="{{item.ind}}-{{subitem.ind}}" data-pid="{{item.ind}}" class="hide green-bg">
 
 								<td><a href="/server/{{subitem.ind}}"><span class="glyphicon glyphicon-cog mr10 " title="详情"></span></a>
 									% if viewmodel['user'] > 0:
@@ -147,7 +176,7 @@
 								% end
 								</td>
                                 <td
-                                % if subitem.in_using == 0:
+                                % if subitem.in_using ==0:
 							 style="background-color:#00FF00"
 							    % end
 							    >{{subitem.ip}}</td>
@@ -172,7 +201,7 @@
                                 <td></td>
 							</tr>
 							%for ssitem in subitemw.sub_servers:
-								<tr data-id="{{item.ind}}-{{subitem.ind}}-{{ssitem.ind}}" data-pid="{{item.ind}}-{{subitem.ind}}" class="hide">
+								<tr data-id="{{item.ind}}-{{subitem.ind}}-{{ssitem.ind}}" data-pid="{{item.ind}}-{{subitem.ind}}" class="hide grey-bg">
 									<td><a href="/server/{{ssitem.ind}}"><span class="glyphicon glyphicon-cog mr10 " title="详情"></span></a></td>
 									<td></td>
 									<td></td>

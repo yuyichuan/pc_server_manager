@@ -1,6 +1,9 @@
 .w20 {
 	width: 20px;
 }
+.w30 {
+	width: 30px;
+}
 .w40 {
 	width: 40px;
 }
@@ -95,4 +98,15 @@ background-color: #eee;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
 #float_Top{ position: fixed;top: 50px; background-color: rgb(255, 255, 255); z-index: 1000; }
+
+.blue-bg {
+    background-color: #a0d6d1;
+}
+.green-bg {
+    background-color: #a0dbf2;
+}
+.grey-bg {
+    background-color: #d3edf7;
+}

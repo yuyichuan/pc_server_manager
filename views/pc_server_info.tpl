@@ -150,7 +150,7 @@
                                 % if server.in_using == 1:
                                 checked="checked"
                                 %end
-                                >在用</label>
+                                >忙碌</label>
 							<label class="radio-inline">
 								<input type="radio" name="in_using" value="0"
                                 % if server.in_using == 0:
@@ -162,7 +162,7 @@
                                 % if server.in_using == 2:
                                 checked="checked"
                                 %end
-                            >将闲</label>
+                            >半闲</label>
 						</div>
 					</div>
 					<div class="form-group">
