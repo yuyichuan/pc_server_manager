@@ -161,6 +161,60 @@ def __formatstr(orginal):
     return orginal
 
 
+@route('/updatesubserver', method='POST')
+def updatesubserver():
+    logging.info(request.body.buf)
+
+    parentip = request.forms.get('parentip')
+    curip = request.forms.get('ip')
+
+    p_server = getServerByIp(parentip)
+    sub_server = getServerByIp(curip)
+
+    if p_server:
+        if sub_server == None:
+            sub_server = Server.create(i_level=p_server.i_level + 1, ind_prent=p_server.ind)
+
+        #sub_server.ind_prent = __formatstr(request.forms.get('mac'))
+        #sub_server.e_time = __formatstr(request.forms.get('e_time'))
+        #sub_server.s_time = __formatstr(request.forms.get('s_time'))
+        #sub_server.m_r = __formatstr(request.forms.get('m_r'))
+        #sub_server.cabinet = __formatstr(request.forms.get('cabinet'))
+        #sub_server.location = __formatstr(request.forms.get('location'))
+        #sub_server.idrac = __formatstr(request.forms.get('idrac'))
+        #sub_server.cable_label = __formatstr(request.forms.get('cable_label'))
+        sub_server.mac = __formatstr(request.forms.get('mac'))
+        sub_server.ip = __formatstr(request.forms.get('ip'))
+        sub_server.cpu = __formatstr(request.forms.get('cpu'))
+        sub_server.hd = __formatstr(request.forms.get('hd'))
+        sub_server.memory = __formatstr(request.forms.get('memory'))
+        sub_server.op_sys = __formatstr(request.forms.get('op_sys'))
+        sub_server.bz_name = __formatstr(request.forms.get('bz_name'))
+        sub_server.in_using = '1'
+        sub_server.config = __formatstr(request.forms.get('config'))
+        #sub_server.pc_type = __formatstr(request.forms.get('pc_type'))
+        #sub_server.pc_code = __formatstr(request.forms.get('pc_code'))
+        sub_server.remark = __formatstr(request.forms.get('remark'))
+        sub_server.user_pw = __formatstr(request.forms.get('user_pw'))
+        sub_server.monitor_url = __formatstr(request.forms.get('monitor_url'))
+
+        sub_server.save()
+        macaron.bake()
+        logging.info("ok:" + request.body.buf)
+
+    else:
+        logging.error("error:" + request.body.buf)
+
+    return '{"status":0}'
+
+# get server by ip
+def getServerByIp(ip):
+    if ip:
+        servers = Server.select("ip=?", [ip]).order_by("ip desc")
+        for server in servers:
+            return server
+    return None
+
 @route('/newserver/<pind>', method='GET')
 def new_server_inf(pind):
     s = bottle.request.environ.get('beaker.session')
